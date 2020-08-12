@@ -52,6 +52,7 @@
         <guava.version>28.2-jre</guava.version>
         <commons-math3.version>3.6.1</commons-math3.version>
         <commons-lang3.version>3.10</commons-lang3.version>
+        <io.aeron.version>1.29.0</io.aeron.version>
         <lmax.com.lmax.disruptor.version>3.4.2</lmax.com.lmax.disruptor.version>
         <openhft.affinity.version>3.2.2</openhft.affinity.version>
         <openhft.chronicle.wire.version>2.19.1</openhft.chronicle.wire.version>
@@ -84,6 +85,13 @@
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
             <version>${lmax.com.lmax.disruptor.version}</version>
+        </dependency>
+
+        <!-- Aeron -->
+        <dependency>
+            <groupId>io.aeron</groupId>
+            <artifactId>aeron-all</artifactId>
+            <version>${io.aeron.version}</version>
         </dependency>
 
         <dependency>
@@ -260,6 +268,12 @@
             <artifactId>cucumber-picocontainer</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0.1-jre</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

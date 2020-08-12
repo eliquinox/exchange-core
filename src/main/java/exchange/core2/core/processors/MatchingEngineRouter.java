@@ -101,6 +101,7 @@ public final class MatchingEngineRouter implements WriteBytesMarshallable {
         objectsPoolConfig.put(ObjectsPool.ART_NODE_256, 1024 * 4);
         this.objectsPool = new ObjectsPool(objectsPoolConfig);
         if (exchangeCfg.getInitStateCfg().fromSnapshot()) {
+            // load existing order books if specified by config
             final DeserializedData deserialized = serializationProcessor.loadData(
                     exchangeCfg.getInitStateCfg().getSnapshotId(),
                     ISerializationProcessor.SerializedModuleType.MATCHING_ENGINE_ROUTER,
@@ -132,6 +133,7 @@ public final class MatchingEngineRouter implements WriteBytesMarshallable {
             this.orderBooks = deserialized.orderBooks;
 
         } else {
+            // initialise empty order books otherwise
             this.binaryCommandsProcessor = new BinaryCommandsProcessor(
                     this::handleBinaryMessage,
                     this::handleReportQuery,
@@ -240,7 +242,7 @@ public final class MatchingEngineRouter implements WriteBytesMarshallable {
             // TODO don't need for EXCHANGE mode order books?
             // TODO doing this for many order books simultaneously can introduce hiccups
             if ((cmd.serviceFlags & 1) != 0 && cmd.command != OrderCommandType.ORDER_BOOK_REQUEST && cmd.resultCode == CommandResultCode.SUCCESS) {
-                cmd.marketData = orderBook.getL2MarketDataSnapshot(8);
+                cmd.marketData = orderBook.getL2MarketDataSnapshot(cmd.depth);
             }
         }
     }

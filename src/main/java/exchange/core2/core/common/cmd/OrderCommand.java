@@ -73,6 +73,7 @@ public final class OrderCommand implements IOrder {
 
     // optional market data
     public L2MarketData marketData;
+    public int depth;
 
     // sequence of last available for this command
     //public long matcherEventSequence;
