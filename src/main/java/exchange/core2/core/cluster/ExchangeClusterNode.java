@@ -23,11 +23,11 @@ import static exchange.core2.core.cluster.utils.NetworkUtils.*;
 import static java.util.stream.Collectors.toList;
 
 @Slf4j
-public class MatchingEngineClusterNode {
+public class ExchangeClusterNode {
 
     private final ShutdownSignalBarrier barrier;
 
-    public MatchingEngineClusterNode(ShutdownSignalBarrier barrier) {
+    public ExchangeClusterNode(ShutdownSignalBarrier barrier) {
         this.barrier = barrier;
     }
 
@@ -72,7 +72,7 @@ public class MatchingEngineClusterNode {
         AeronArchive.Context aeronArchiveContext = new AeronArchive.Context();
         ClusteredServiceContainer.Context serviceContainerContext = new ClusteredServiceContainer.Context();
 
-        MatchingEngineRouterClusteredService service = new MatchingEngineRouterClusteredService(exchangeCfg);
+        ExchangeClusteredService service = new ExchangeClusteredService(exchangeCfg, (cmd, l) -> log.info("Command {} received", cmd));
 
         mediaDriverContext
                 .aeronDirectoryName(aeronDir)

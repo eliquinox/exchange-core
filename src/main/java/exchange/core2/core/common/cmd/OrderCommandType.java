@@ -30,6 +30,8 @@ public enum OrderCommandType {
 
     ORDER_BOOK_REQUEST((byte) 6, false),
 
+    ADD_SYMBOL((byte) 7, false),
+
     ADD_USER((byte) 10, true),
     BALANCE_ADJUSTMENT((byte) 11, true),
     SUSPEND_USER((byte) 12, true),

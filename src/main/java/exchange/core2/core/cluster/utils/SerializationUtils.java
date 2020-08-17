@@ -67,7 +67,6 @@ public class SerializationUtils {
         long[] askOrders = bytesToLongs(askOrdersBytes);
         currentOffset += askOrdersLength;
 
-
         int bidLength = buffer.getInt(currentOffset);
         currentOffset += BitUtil.SIZE_OF_INT;
         byte[] bidPricesBytes = new byte[bidLength];
